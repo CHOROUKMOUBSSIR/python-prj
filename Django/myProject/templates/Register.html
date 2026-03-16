@@ -1,0 +1,19 @@
+<body> 
+    <h1>test register</h1>
+    <form method="POST" action="register">
+        {% csrf_token %}
+        <p>first name</p>
+    <input type="text" name="first_name" placeholder="first name" required><br>
+    <p>last name</p>
+    <input type="text" name="last_name" placeholder="last name" required><br>
+    <p>Username</p>
+    <input type="text" name="username" placeholder="Username"><br>
+    <p>Email</p>
+    <input type="email" name="email" placeholder="Email"><br>
+    <p>Password</p>
+    <input type="password" name="password" placeholder="Password"><br>
+    <p>Confirm Password</p>
+    <input type="password" name="password_confirm" placeholder="Confirm Password"><br>
+    <input type="submit" value="Register">
+    </form>
+</body>

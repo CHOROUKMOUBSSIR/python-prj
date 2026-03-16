@@ -1,0 +1,56 @@
+{% load static %}
+{% load static %} <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index - OnePage Bootstrap Template</title>
+    
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="p-3 border-bottom">
+        {% if user.is_authenticated %}
+            <p>Connecté en tant que : <strong>{{ user.username }}</strong></p>
+            <a href="logout" class="btn btn-danger btn-sm">Se déconnecter</a>
+        {% else %}
+            <a href="login" class="btn btn-primary btn-sm">Connexion</a> | 
+            <a href="register" class="btn btn-outline-primary btn-sm">Inscription</a>
+        {% endif %}
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Bienvenue  !</h1>
+
+        <div class="mt-4">
+            <p>Entrez votre texte pour compter les mots :</p>
+            <form method="POST" action="counter">
+                {% csrf_token %}
+                <textarea name="text" class="form-control" rows="5" placeholder="Écrivez ici..."></textarea><br>
+                <input type="submit" class="btn btn-success" value="Compter les mots">
+            </form>
+        </div>
+
+        <hr>
+
+        <h3>Nos fonctionnalités dynamiques :</h3>
+        <ul class="list-group">
+            {% for feature in features %}
+                <li class="list-group-item">
+                    <strong>{{ feature.name }}</strong> : {{ feature.details }}
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Aucune fonctionnalité n'a été ajoutée.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
