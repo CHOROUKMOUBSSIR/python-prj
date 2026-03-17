@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+
+<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+<title>Mon projet</title>
+</head>
+
+<body>
+
+<nav class="p-3 border-bottom">
+{% if user.is_authenticated %}
+<p>Connecté : {{ user.username }}</p>
+<a href="logout" class="btn btn-danger btn-sm">Se déconnecter</a>
+{% else %}
+<a href="login" class="btn btn-primary btn-sm">Connexion</a>
+<a href="register" class="btn btn-outline-primary btn-sm">Inscription</a>
+{% endif %}
+</nav>
+
+<div class="container mt-5">
+{% block content %}
+
+{% endblock %}
+</div>
+
+</body>
+</html>
